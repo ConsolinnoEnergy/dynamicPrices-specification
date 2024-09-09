@@ -1,0 +1,46 @@
+Introduction
+------------
+
+This document describes the format of a JSON object used for dynamic pricing data in compliance with the CLSEEDI (Common Local Smart Energy Exchange Data Interface) specification. This data structure provides time-based electricity price information in a standardized format.
+
+Fields Description
+------------------
+
+type:
+    Indicates the type of data. In this case, "de.dynamicprice" specifies that the object contains dynamic price information.
+
+source:
+    This field is reserved for identifying the origin of the data. It should be populated with information about the data source, such as the provider or system generating this data.
+
+id:
+    A unique identifier for this message instance, using a UUID format. This ID ensures that each message can be distinctly recognized.
+
+specversion:
+    Specifies the version of the data specification being used. Here, "1.0" indicates the first version of the CLSEEDI dynamic pricing format.
+
+data:
+    Contains the main payload of the message:
+
+    protocol:
+        Indicates the protocol version being used, "1.0.0" in this case.
+
+    errorNumber:
+        A numerical code representing the error status. A value of 0 indicates no errors; other values would indicate different error conditions.
+
+    daPrices:
+        An array of objects representing day-ahead prices:
+
+        time:
+            A timestamp in ISO 8601 format (YYYY-MM-DDTHH:MM:SSZ) indicating when the price is effective. The 'Z' at the end denotes that the time is in UTC (Coordinated Universal Time).
+
+        value:
+            The price in euros per megawatt-hour (€/MWh). For example, a value of 92.93 means 92.93 €/MWh. This can be interpreted in smaller units as follows:
+            - 92.93 €/MWh translates to 9293 cent per 1000 kWh.
+            - This further simplifies to approximately 9.29 cent per kWh.
+
+Important Notes
+---------------
+
+- Time Format: The time must be in the exact UTC format as specified (YYYY-MM-DDTHH:MM:SSZ), which ensures compatibility and accurate scheduling for energy pricing.
+
+- Price Interpretation: Prices are expressed as double precision floating-point numbers in euros per megawatt-hour, reflecting the cost of electricity for the specified time periods.
