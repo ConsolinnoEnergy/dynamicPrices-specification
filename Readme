@@ -3,6 +3,19 @@ Introduction
 
 This document describes the format of a JSON object used for dynamic pricing data in compliance with the CLSEEDI (Common Local Smart Energy Exchange Data Interface) specification. This data structure provides time-based electricity price information in a standardized format.
 
+
+Topics:
+------------------
+To set dynamic price data:
+
+to-localdevice/setDynPrice
+
+
+To subscribe for events or acknowledgements:
+
+from-localdevice/event
+
+
 Fields Description
 ------------------
 
